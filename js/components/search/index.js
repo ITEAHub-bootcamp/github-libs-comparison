@@ -43,7 +43,7 @@ class Search extends Component {
 
   onSelectRow (event) {
     console.error('onSelectRow', event);
-    // TODO: implement chart drawing
+    // TODO: implement chart for example: https://www.highcharts.com/demo/bar-stacked
   }
 
   render () {
