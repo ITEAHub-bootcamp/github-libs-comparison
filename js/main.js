@@ -5,4 +5,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import '../styles/_base.scss';
 
-ReactDOM.render(<MuiThemeProvider><Comparison /></MuiThemeProvider>, document.getElementById('root'));
+ReactDOM.render(
+  <MuiThemeProvider>
+    <Comparison />
+  </MuiThemeProvider>,
+document.getElementById('root'));

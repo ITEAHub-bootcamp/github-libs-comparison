@@ -1,20 +1,9 @@
 import React, {Component} from 'react';
 import apiMock from '../../mocks';
-import {getConfig} from './chart-config';
-import ReactHighcharts from 'react-highcharts';
+import Chart from './chart';
+import Grid from './grid';
 
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn
-} from 'material-ui';
-
-const fields = ['id', 'name', 'description', 'stargazers_count', 'watchers', 'forks', 'open_issues'];
-
-class Search extends Component {
+class Comparison extends Component {
   constructor (...args) {
     super(...args);
 
@@ -32,63 +21,23 @@ class Search extends Component {
     });
   }
 
-  get tableHeader () {
-    return <TableRow>
-      {fields.map(item => <TableHeaderColumn key={item}>{item}</TableHeaderColumn>)}
-    </TableRow>;
-  }
-
-  get tableBody () {
-    return this.state.data.map((item, index) => <TableRow key={item.id} selected={this.isSelected(index)}>
-      {fields.map(field => <TableRowColumn key={field}>{item[field]}</TableRowColumn>)}
-    </TableRow>);
-  }
-
-  getConfigOptions () {
-    const categories = ['stargazers_count', 'watchers', 'forks', 'open_issues'];
-    const selectedItems = this.state.data.filter((item, index) => this.state.selected.includes(index));
-    const series = selectedItems.map(item => {
-      const {name, stargazers_count, watchers, forks, open_issues} = item;
-      return {
-        name: name,
-        data: [stargazers_count, watchers, forks, open_issues]
-      }
-    });
-
-    return {series, categories}
-  }
-
-  get config () {
-    return getConfig('stakedBar', this.getConfigOptions());
-  }
-
-  isSelected (index) {
-    return this.state.selected.includes(index);
-  }
-
-  onSelectRow (rows) {
-    this.setState({selected: rows});
+  onSelectRow (selected) {
+    this.setState({selected});
   }
 
   render () {
     return (
       <div>
-        <div>
-          <Table multiSelectable={true} onRowSelection={this.onSelectRow}>
-            <TableHeader displaySelectAll={false} enableSelectAll={false}>
-              {this.tableHeader}
-            </TableHeader>
-            <TableBody deselectOnClickaway={false}>
-              {this.tableBody}
-            </TableBody>
-          </Table>
-        </div>
-        <ReactHighcharts
-          config={this.config}
-          domProps={{className: 'highcharts-dom-wrapper'}} />
+        <Grid
+          data={this.state.data}
+          selected={this.state.selected}
+          onSelectRow={this.onSelectRow} />
+        <Chart
+          data={this.state.data}
+          selected={this.state.selected} />
       </div>
     );
   }
 }
 
-export default Search;
+export default Comparison;

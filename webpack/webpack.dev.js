@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -53,6 +54,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve('./index.html')
     }),
+    new UglifyJSPlugin({
+      parallel: {
+        cache: true,
+        workers: 2
+      }
+    })
   ],
   devServer: {
     contentBase: path.join(__dirname, '../'),
