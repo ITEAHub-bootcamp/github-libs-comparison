@@ -12,17 +12,10 @@ class Comparison extends Component {
     super(...args);
 
     this.state = {
-      data: [],
       selected: []
     };
 
     this.onSelectRow = this.onSelectRow.bind(this);
-  }
-
-  componentDidMount () {
-    apiMock.get('search?foo').then(repos => {
-      this.setState({data: repos.repositories.items.slice(0, 5)});
-    });
   }
 
   onSelectRow (selected) {
@@ -36,11 +29,11 @@ class Comparison extends Component {
           Load data
         </RaisedButton>
         <Grid
-          data={this.state.data}
+          data={this.props.repositories}
           selected={this.state.selected}
           onSelectRow={this.onSelectRow} />
         <Chart
-          data={this.state.data}
+          data={this.props.repositories}
           selected={this.state.selected} />
       </div>
     );
