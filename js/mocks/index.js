@@ -6,7 +6,7 @@ const apiMock = {
   },
 
   waitFor (promise) {
-    const delay = 200;
+    const delay = 1200;
     const timeout = new Promise(resolve => setTimeout(resolve, delay));
 
     return Promise.all([promise, timeout]).then(([arg]) => arg);

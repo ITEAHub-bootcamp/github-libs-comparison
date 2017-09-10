@@ -1,4 +1,5 @@
 export const initialStore = {
+  loading: false,
   repositories: [
     {
       "id": 19872456,
