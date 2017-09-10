@@ -1,9 +1,8 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from '../reducers';
-import {customMiddleWare} from '../middlewares';
-import {logger} from '../middlewares/logger';
+import {logger, customThunk} from '../middlewares';
 
-const middleware = [customMiddleWare, logger];
+const middleware = [customThunk, logger];
 const enhancer = compose(applyMiddleware(...middleware));
 
 export default function configureStore(initialState) {

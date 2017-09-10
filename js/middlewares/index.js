@@ -1,7 +1,7 @@
-export const customMiddleWare = ({dispatch, getState}) => next => action => {
-  if (typeof action === 'function') {
-    return action(dispatch, getState);
-  }
+import {customThunk} from './custome-thunk';
+import {logger} from './logger';
 
-  return next(action);
-};
+export {
+  customThunk,
+  logger
+}
