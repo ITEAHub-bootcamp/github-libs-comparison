@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import apiMock from '../../mocks';
 import Chart from '../../components/chart';
 import Grid from '../../components/grid';
+import {load} from '../../actions/repositories';
+import {RaisedButton} from 'material-ui';
 
 class Comparison extends Component {
   constructor (...args) {
@@ -28,6 +32,9 @@ class Comparison extends Component {
   render () {
     return (
       <div>
+        <RaisedButton onClick={this.props.actions.load}>
+          Load data
+        </RaisedButton>
         <Grid
           data={this.state.data}
           selected={this.state.selected}
@@ -40,4 +47,16 @@ class Comparison extends Component {
   }
 }
 
-export default Comparison;
+const mapStateToProps = ({repositories}) => {
+  return {
+    repositories
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators({load}, dispatch)
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comparison);
