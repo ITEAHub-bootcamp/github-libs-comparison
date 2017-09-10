@@ -22,11 +22,11 @@ class Grid extends Component {
   get tableBody () {
     return this.props.data.map((item, index) =>
       <TableRow key={item.id} selected={this.isSelected(index)}>
-      {
-        this.fields.map(field =>
-          <TableRowColumn key={field}>{item[field]}</TableRowColumn>)
-      }
-    </TableRow>);
+        {
+          this.fields.map(field =>
+            <TableRowColumn key={field}>{item[field]}</TableRowColumn>)
+        }
+      </TableRow>);
   }
 
   onSelectRow (id) {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import apiMock from '../../mocks';
-import Chart from './chart';
-import Grid from './grid';
+import Chart from '../../components/chart';
+import Grid from '../../components/grid';
 
 class Comparison extends Component {
   constructor (...args) {

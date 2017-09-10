@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Comparison from './components/comparison';
+import Comparison from './containers/comparison';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import '../styles/_base.scss';
