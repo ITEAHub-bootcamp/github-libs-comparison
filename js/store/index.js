@@ -3,7 +3,8 @@ import rootReducer from '../reducers';
 import {logger, customThunk} from '../middlewares';
 
 const middleware = [customThunk, logger];
-const enhancer = compose(applyMiddleware(...middleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = composeEnhancers(applyMiddleware(...middleware));
 
 export default function configureStore(initialState) {
   return createStore(rootReducer, initialState, enhancer);
